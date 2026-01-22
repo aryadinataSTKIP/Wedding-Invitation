@@ -5,205 +5,395 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arya & Mita Wedding Invitation</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f8f5f2;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         .hero {
-            height: 100vh;
-            background:
-                linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
-                url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80')
-                center / cover no-repeat;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #fff;
+            padding: 2rem;
+            position: relative;
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80') center / cover;
+            z-index: -2;
+            filter: grayscale(1) brightness(0.4);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: -1;
+        }
+
+        .logo {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #f4d03f, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        .couple {
+            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 4rem;
+            letter-spacing: 1px;
         }
 
         .countdown {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
         }
 
-        .countdown div {
-            background: rgba(255,255,255,.9);
-            color: #333;
-            padding: 1rem;
-            border-radius: 12px;
-            min-width: 80px;
-            font-weight: 600;
+        .countdown-item {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #f4d03f, transparent);
+            transition: left 0.5s;
+        }
+
+        .countdown-item:hover::before { left: 100%; }
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(244,208,63,0.3);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f4d03f;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         section {
-            max-width: 1000px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: rgba(255,255,255,.85);
-            border-radius: 20px;
+            max-width: 900px;
+            margin: 5rem auto;
+            padding: 4rem 2rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
             text-align: center;
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 200%;
+            background: linear-gradient(to bottom, transparent, rgba(244,208,63,0.3), transparent);
         }
 
         h2 {
-            font-family: 'Playfair Display', serif;
-            color: #8b4513;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 500;
+            color: #f4d03f;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        .content {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .detail-item {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            background: rgba(244,208,63,0.1);
+            border-color: #f4d03f;
+        }
+
+        .detail-icon {
+            font-size: 2rem;
+            color: #f4d03f;
             margin-bottom: 1rem;
+        }
+
+        .detail-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
+            max-width: 500px;
+            margin: 3rem auto 0;
         }
 
-        input, select, button {
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid #ddd;
+        input, select {
+            padding: 1.25rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            color: #ffffff;
             font-family: inherit;
             font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder, select option {
+            color: rgba(255,255,255,0.7);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #f4d03f;
+            box-shadow: 0 0 0 3px rgba(244,208,63,0.2);
         }
 
         button {
-            background: linear-gradient(135deg, #d4af37, #b8962e);
-            color: white;
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, #f4d03f, #f39c12);
+            color: #0f0f23;
             border: none;
-            cursor: pointer;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 1.1rem;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         button:hover {
-            opacity: .9;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(244,208,63,0.4);
         }
 
         #musicBtn {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg,#d4af37,#b8962e);
-            color: #fff;
+            top: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #f4d03f, #f39c12);
+            color: #0f0f23;
             border: none;
-            border-radius: 20px;
-            padding: 12px 20px;
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
             font-weight: 600;
             cursor: pointer;
+            font-size: 1rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        #musicBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(244,208,63,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .countdown { gap: 1rem; }
+            .countdown-number { font-size: 2rem; }
+            section { margin: 2rem auto; padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 
 <body>
-
-<section class="hero">
-    <div>
-        <h1>You're Invited!</h1>
-        <p>Muhammad Arya Sukmadinata & Mita Alfitri</p>
+    <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="logo">Arya & Mita</div>
+        <div class="couple">Muhammad Arya Sukmadinata & Mita Alfitri</div>
 
         <div class="countdown">
-            <div><span id="days">00</span><br>Days</div>
-            <div><span id="hours">00</span><br>Hours</div>
-            <div><span id="minutes">00</span><br>Minutes</div>
-            <div><span id="seconds">00</span><br>Seconds</div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
         </div>
     </div>
-</section>
 
-<section>
-    <h2>Our Story</h2>
-    <p>
-        It was a typical day at STKIP Paracendekia NW Sumbawa. What began as
-        friendship slowly turned into a lifelong commitment.
-    </p>
-</section>
+    <section>
+        <h2>Our Story</h2>
+        <p class="content">
+            It was a typical day at STKIP Paracendekia NW Sumbawa. What began as
+            friendship slowly turned into a lifelong commitment.
+        </p>
+    </section>
 
-<section>
-    <h2>Event Details</h2>
-    <p><strong>Date:</strong> June 15, 2026</p>
-    <p><strong>Time:</strong> 9:00 AM</p>
-    <p><strong>Venue:</strong> Ledang, Sumbawa Besar, West Nusa Tenggara</p>
-</section>
+    <section>
+        <h2>Event Details</h2>
+        <div class="event-details">
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                <div class="detail-title">Date</div>
+                <div>June 15, 2026</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-clock"></i></div>
+                <div class="detail-title">Time</div>
+                <div>9:00 AM</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="detail-title">Venue</div>
+                <div>Ledang, Sumbawa Besar<br>West Nusa Tenggara</div>
+            </div>
+        </div>
+    </section>
 
-<section>
-    <h2>RSVP</h2>
-    <form id="rsvpForm">
-        <input type="text" id="guestName" placeholder="Your Full Name" required>
-        <select id="attendance" required>
-            <option value="">Will you attend?</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-        <button type="submit">Send My RSVP</button>
-    </form>
-</section>
+    <section>
+        <h2>RSVP</h2>
+        <form id="rsvpForm">
+            <input type="text" id="guestName" placeholder="Your Full Name" required>
+            <select id="attendance" required>
+                <option value="">Will you attend?</option>
+                <option value="yes">Yes, I'll be there</option>
+                <option value="no">No, can't make it</option>
+            </select>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Send RSVP</button>
+        </form>
+    </section>
 
-<!-- BACKGROUND MUSIC -->
-<audio id="weddingSong" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
-</audio>
+    <!-- BACKGROUND MUSIC -->
+    <audio id="weddingSong" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+    </audio>
 
-<button id="musicBtn">🎵 Music</button>
+    <button id="musicBtn"><i class="fas fa-music"></i> Music</button>
 
-<script>
-    /* COUNTDOWN */
-    const weddingDate = new Date("2026-06-15T09:00:00").getTime();
+    <script>
+        /* COUNTDOWN */
+        const weddingDate = new Date("2026-06-15T09:00:00").getTime();
 
-    setInterval(() => {
-        const now = new Date().getTime();
-        const d = weddingDate - now;
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
 
-        if (d <= 0) return;
+            if (distance > 0) {
+                document.getElementById("days").textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").textContent = Math.floor((distance / (1000 * 60 * 60)) % 24);
+                document.getElementById("minutes").textContent = Math.floor((distance / (1000 * 60)) % 60);
+                document.getElementById("seconds").textContent = Math.floor((distance / 1000) % 60);
+            }
+        };
 
-        document.getElementById("days").textContent =
-            Math.floor(d / (1000*60*60*24));
-        document.getElementById("hours").textContent =
-            Math.floor((d / (1000*60*60)) % 24);
-        document.getElementById("minutes").textContent =
-            Math.floor((d / (1000*60)) % 60);
-        document.getElementById("seconds").textContent =
-            Math.floor((d / 1000) % 60);
-    }, 1000);
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-    /* MUSIC CONTROL */
-    const song = document.getElementById("weddingSong");
-    const btn = document.getElementById("musicBtn");
-    let playing = false;
+        /* MUSIC CONTROL */
+        const song = document.getElementById("weddingSong");
+        const musicBtn = document.getElementById("musicBtn");
+        let isPlaying = false;
 
-    btn.onclick = () => {
-        if (playing) {
-            song.pause();
-            btn.textContent = "🎵 Music";
-        } else {
-            song.volume = 0.3;
-            song.play();
-            btn.textContent = "⏸ Pause";
-        }
-        playing = !playing;
-    };
+        musicBtn.onclick = () => {
+            if (isPlaying) {
+                song.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i> Music';
+            } else {
+                song.volume = 0.3;
+                song.play().catch(() => {});
+                musicBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+            }
+            isPlaying = !isPlaying;
+        };
 
-    /* RSVP */
-    document.getElementById("rsvpForm").addEventListener("submit", e => {
-        e.preventDefault();
-        alert("Thank you for your response!");
-        e.target.reset();
-    });
-</script>
-
+        /* RSVP */
+        document.getElementById("rsvpForm").addEventListener("submit", e => {
+            e.preventDefault();
+            const name = document.getElementById("guestName").value;
+            const attendance = document.getElementById("attendance").value;
+            alert(`Thank you, ${name}! We look forward to seeing you${attendance === 'yes' ? '' : ' (virtually)'}.`);
+            e.target.reset();
+        });
+    </script>
 </body>
 </html>
