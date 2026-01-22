@@ -4,273 +4,206 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arya & Mita Wedding Invitation</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            overflow-x: hidden; 
-            background: #f8f5f2; 
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f5f2;
+            color: #333;
+            overflow-x: hidden;
         }
-        .hero { 
-            height: 100vh; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            color: white; 
-            position: relative; 
+
+        .hero {
+            height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+                url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80')
+                center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
         }
-        .hero-content h1 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: clamp(2.5rem, 8vw, 5rem); 
-            margin-bottom: 1rem; 
-            opacity: 0; 
-            animation: fadeInUp 1.2s ease forwards; 
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1rem;
         }
-        .hero-content p { 
-            font-size: clamp(1.2rem, 4vw, 1.8rem); 
-            margin-bottom: 2rem; 
-            opacity: 0; 
-            animation: fadeInUp 1.2s ease 0.3s forwards; 
+
+        .countdown {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
-        .countdown { 
-            display: flex; 
-            gap: 1.5rem; 
-            font-size: clamp(1.2rem, 5vw, 1.8rem); 
-            margin-top: 2rem; 
-            justify-content: center; 
-            flex-wrap: wrap; 
+
+        .countdown div {
+            background: rgba(255,255,255,.9);
+            color: #333;
+            padding: 1rem;
+            border-radius: 12px;
+            min-width: 80px;
+            font-weight: 600;
         }
-        .countdown div { 
-            background: rgba(255,255,255,0.9); 
-            color: #333; 
-            padding: 1rem 1.5rem; 
-            border-radius: 15px; 
-            min-width: 80px; 
-            backdrop-filter: blur(10px); 
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3); 
+
+        section {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,.85);
+            border-radius: 20px;
+            text-align: center;
         }
-        .countdown span { 
-            display: block; 
-            font-weight: 600; 
-            font-size: 1.5em; 
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #8b4513;
+            margin-bottom: 1rem;
         }
-        section { 
-            padding: 4rem 2rem; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
-        .story, .event { 
-            background: rgba(255,255,255,0.8); 
-            text-align: center; 
-            border-radius: 20px; 
-            margin: 2rem 0; 
-            backdrop-filter: blur(10px); 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1); 
+
+        input, select, button {
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-family: inherit;
+            font-size: 1rem;
         }
-        h2 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 2.5rem; 
-            color: #8b4513; 
-            margin-bottom: 1.5rem; 
+
+        button {
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
         }
-        .rsvp { 
-            background: linear-gradient(135deg, #fff 0%, #f9f5f0 100%); 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15); 
-            border-radius: 25px; 
-            padding: 3rem; 
-            max-width: 600px; 
-            margin: 2rem auto; 
+
+        button:hover {
+            opacity: .9;
         }
-        form { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 1.2rem; 
-        }
-        input, select { 
-            padding: 1rem 1.5rem; 
-            border: 2px solid #e8d5b7; 
-            border-radius: 12px; 
-            font-size: 1rem; 
-            font-family: inherit; 
-            transition: border-color 0.3s, box-shadow 0.3s; 
-            background: rgba(255,255,255,0.9); 
-        }
-        input:focus, select:focus { 
-            outline: none; 
-            border-color: #d4af37; 
-            box-shadow: 0 0 20px rgba(212,175,55,0.3); 
-        }
-        button { 
-            padding: 1.2rem; 
-            background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%); 
-            color: white; 
-            border: none; 
-            border-radius: 12px; 
-            font-size: 1.1rem; 
-            font-weight: 600; 
-            cursor: pointer; 
-            transition: transform 0.3s, box-shadow 0.3s; 
-        }
-        button:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 15px 40px rgba(212,175,55,0.4); 
-        }
-        button:active { 
-            transform: translateY(0); 
-        }
-        @keyframes fadeInUp { 
-            from { opacity: 0; transform: translateY(40px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        @media (max-width: 768px) { 
-            .countdown { gap: 1rem; } 
-            .countdown div { padding: 0.8rem 1rem; min-width: 70px; }
-            section { padding: 3rem 1.5rem; } 
-        }
-        @media (max-width: 480px) { 
-            .hero { background-attachment: scroll; } 
+
+        #musicBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg,#d4af37,#b8962e);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 20px;
+            font-weight: 600;
+            cursor: pointer;
         }
     </style>
 </head>
+
 <body>
-    <section class="hero">
-        <div class="hero-content">
-            <h1>You're Invited!</h1>
-            <p>Muhammad Arya Sukmadinata & Mita Alfitri</p>
-            <p>Join us as we celebrate our love</p>
-            <div class="countdown" id="countdown">
-                <div><span id="days">00</span><br>Days</div>
-                <div><span id="hours">00</span><br>Hours</div>
-                <div><span id="minutes">00</span><br>Minutes</div>
-                <div><span id="seconds">00</span><br>Seconds</div>
-            </div>
+
+<section class="hero">
+    <div>
+        <h1>You're Invited!</h1>
+        <p>Muhammad Arya Sukmadinata & Mita Alfitri</p>
+
+        <div class="countdown">
+            <div><span id="days">00</span><br>Days</div>
+            <div><span id="hours">00</span><br>Hours</div>
+            <div><span id="minutes">00</span><br>Minutes</div>
+            <div><span id="seconds">00</span><br>Seconds</div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>It was a typical day at STKIP Paracendekia NW Sumbawa, where we were both pursuing our dreams as English Education students. Little did we know, our lives were about to intertwine in a beautiful way. As classmates, we spent countless hours studying, attending lectures, and sharing laughs together. Over time, our friendship blossomed into something more, and we discovered a deep connection that went beyond academia. Four years of learning side by side nurtured our love, and we realized that we had found our perfect match in each other.</p>
-    </section>
+<section>
+    <h2>Our Story</h2>
+    <p>
+        It was a typical day at STKIP Paracendekia NW Sumbawa. What began as
+        friendship slowly turned into a lifelong commitment.
+    </p>
+</section>
 
-    <section class="event">
-        <h2>Event Details</h2>
-        <div style="font-size: 1.2rem; line-height: 2;">
-            <p><strong>📅 Date:</strong> June 15, 2026</p>
-            <p><strong>🕕 Time:</strong> 9:00 AM onwards</p>
-            <p><strong>📍 Venue:</strong> Ledang, Sumbawa Besar, West Nusa Tenggara </p>
-            <p><strong>Dress Code:</strong> Formal Elegant</p>
-        </div>
-    </section>
+<section>
+    <h2>Event Details</h2>
+    <p><strong>Date:</strong> June 15, 2026</p>
+    <p><strong>Time:</strong> 9:00 AM</p>
+    <p><strong>Venue:</strong> Ledang, Sumbawa Besar, West Nusa Tenggara</p>
+</section>
 
-    <section class="rsvp">
-        <h2>RSVP</h2>
-        <form id="rsvpForm">
-            <input type="text" id="guestName" placeholder="Your Full Name" required>
-            <select id="attendance" required>
-                <option value="">Will you attend?</option>
-                <option value="yes">Yes, delighted to join!</option>
-                <option value="no">Regretfully cannot attend</option>
-                <option value="maybe">Maybe, will confirm soon</option>
-            </select>
-            <input type="email" id="guestEmail" placeholder="Email for updates (optional)">
-            <button type="submit">Send My RSVP</button>
-        </form>
-        <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #666;">RSVP by June 1st, 2026</p>
-    </section>
+<section>
+    <h2>RSVP</h2>
+    <form id="rsvpForm">
+        <input type="text" id="guestName" placeholder="Your Full Name" required>
+        <select id="attendance" required>
+            <option value="">Will you attend?</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <button type="submit">Send My RSVP</button>
+    </form>
+</section>
 
-    <!-- YOUR "Our Song.mp3" MUSIC PLAYER -->
-    <audio id="weddingSong" loop preload="auto">
-        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
-    </audio>
-    <button id="musicBtn" style="position:fixed;top:20px;right:20px;z-index:1000;background:linear-gradient(135deg,#d4af37,#b8962e);color:white;border:none;border-radius:20px;padding:12px 20px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;box-shadow:0 8px 25px rgba(212,175,55,0.4);transition:all 0.3s;font-size:14px;">
-        🎵 Our Song
-    </button>
+<!-- BACKGROUND MUSIC -->
+<audio id="weddingSong" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+</audio>
 
-    <script>
-        let countdownInterval;
+<button id="musicBtn">🎵 Music</button>
 
-        // COUNTDOWN TIMER - 3 days from now
-        function startCountdown() {
-            const now = Date.now();
-            const threeDaysLater = now + (3 * 24 * 60 * 60 * 1000);
-            
-            function updateCountdown() {
-                const currentTime = Date.now();
-                const distance = threeDaysLater - currentTime;
-                
-                if (distance > 0) {
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+<script>
+    /* COUNTDOWN */
+    const weddingDate = new Date("2026-06-15T09:00:00").getTime();
 
-                    document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-                } else {
-                    document.getElementById('countdown').innerHTML = '<div style="font-size:1.5rem;padding:2rem;">Event Time! 🎉</div>';
-                    clearInterval(countdownInterval);
-                }
-            }
-            
-            updateCountdown();
-            countdownInterval = setInterval(updateCountdown, 1000);
+    setInterval(() => {
+        const now = new Date().getTime();
+        const d = weddingDate - now;
+
+        if (d <= 0) return;
+
+        document.getElementById("days").textContent =
+            Math.floor(d / (1000*60*60*24));
+        document.getElementById("hours").textContent =
+            Math.floor((d / (1000*60*60)) % 24);
+        document.getElementById("minutes").textContent =
+            Math.floor((d / (1000*60)) % 60);
+        document.getElementById("seconds").textContent =
+            Math.floor((d / 1000) % 60);
+    }, 1000);
+
+    /* MUSIC CONTROL */
+    const song = document.getElementById("weddingSong");
+    const btn = document.getElementById("musicBtn");
+    let playing = false;
+
+    btn.onclick = () => {
+        if (playing) {
+            song.pause();
+            btn.textContent = "🎵 Music";
+        } else {
+            song.volume = 0.3;
+            song.play();
+            btn.textContent = "⏸ Pause";
         }
+        playing = !playing;
+    };
 
-        // MUSIC PLAYER - Your "Our Song.mp3"
-        const song = document.getElementById('weddingSong');
-        const musicBtn = document.getElementById('musicBtn');
-        let isPlaying = false;
+    /* RSVP */
+    document.getElementById("rsvpForm").addEventListener("submit", e => {
+        e.preventDefault();
+        alert("Thank you for your response!");
+        e.target.reset();
+    });
+</script>
 
-        musicBtn.onclick = function() {
-            if (isPlaying) {
-                song.pause();
-                musicBtn.innerHTML = '🎵 Our Song';
-                musicBtn.style.background = 'linear-gradient(135deg,#d4af37,#b8962e)';
-                isPlaying = false;
-            } else {
-                song.volume = 0.3;
-                song.currentTime = 0;
-                song.play().then(() => {
-                    musicBtn.innerHTML = '⏸️ Pause';
-                    musicBtn.style.background = 'linear-gradient(135deg,#8b4513,#654321)';
-                    isPlaying = true;
-                });
-            }
-        };
-
-        // Auto-unlock audio after first click
-        document.addEventListener('click', function unlock() {
-            song.play().then(() => song.pause());
-            document.removeEventListener('click', unlock);
-        }, { once: true });
-
-        // RSVP FORM
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('guestName').value;
-            const attendance = document.getElementById('attendance').value;
-            
-            if (!name || !attendance) {
-                alert('Please fill name and attendance.');
-                return;
-            }
-            
-            const message = `Thank you, ${name}! ${attendance === 'yes' ? "We're thrilled you're joining us!" : "We appreciate your response."}`;
-            alert(message);
-            this.reset();
-        });
-
-        // Initialize
-        window.addEventListener('load', startCountdown);
-    </script>
 </body>
 </html>
